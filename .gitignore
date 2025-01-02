@@ -85,6 +85,10 @@ phpunit
 # Composer
 #-------------------------
 vendor/
+composer.json
+composer.lock
+package.json
+composer-lock.json
 
 #-------------------------
 # IDE / Development Files

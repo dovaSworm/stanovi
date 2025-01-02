@@ -20,6 +20,6 @@
             </div>
         </div>
         <?php echo form_close(); ?>
-        <a href="<?php base_url(); ?>/users/add">registracija</a>
+        <a href="<?php base_url(); ?>users/add">registracija</a>
     </div>
 </div>

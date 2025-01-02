@@ -6,21 +6,29 @@ use CodeIgniter\RESTful\ResourceController;
 use App\Models\UserModel;
 
 helper(['form', 'validation',]);
-class Users extends ResourceController
+class Users extends BaseController
 {
     protected $user;
     protected $validation;
+    protected $session;
     public function __construct()
     {
         $this->user = new UserModel();
         $this->validation = service('validation');
+        $this->session = service('session');
     }
 
     public function index()
     {
+        $usr = $this->user->getUserByName('dova', 'dova');
+        $data = [
+            'user' => json_encode($usr),
+            'title' => 'index',
+        ];
+        $this->session->set('user', json_encode($usr));
         $data['title'] = 'Sign in';
         return view('templates/header', $data)
-            . view('users/login')
+            . view('templates/home')
             . view('templates/footer');
     }
     public function register()
@@ -71,9 +79,9 @@ class Users extends ResourceController
                 'user' => $usr,
                 'title' => 'HOME',
             ];
-            $this->session->set($usr); 
+            $this->session->set($usr);
             return view('templates/header', $data)
-                . view('pages/home')
+                . view('templates/home')
                 . view('templates/footer');
         }
         // echo $usr->uloga;

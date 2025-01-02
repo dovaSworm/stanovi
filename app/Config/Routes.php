@@ -9,6 +9,7 @@ use App\Controllers;
  * @var RouteCollection $routes
  */
 $routes->get('/', 'Home::index');
+$routes->get('/projects', 'Projects::index');
 // $routes->get('pages', [Pages::class, 'index']);
 // $routes->get('pages/(:segment)', [Pages::class, 'view']);
 $routes->post('users/login', 'Users::login');
