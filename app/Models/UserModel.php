@@ -15,34 +15,38 @@ class UserModel extends Model
         $this->db = \Config\Database::connect();
         $this->builder = $this->db->table('users');
     }
-
     public function getUserByName($name, $pass)
     {
-        // $this->builder = $this->db->table('users');
         $this->builder->where('ime', $name);
         $this->builder->where('sifra', $pass);
         $query = $this->builder->get();
-        // echo $query->getRow()->uloga;
         return $query->getRow();
     }
-    public function addUser($name, $pass)
+    public function getById($id)
     {
-        $data = [
-            'ime' => $name,
-            'sifra' => $pass,
-            'uloga' => 'USER',
-        ];
-        return $this->builder->insert($data);
-    }
-
-    public function check_username_exists($username)
-    {
-        $this->builder->where('ime', $username);
+        $this->builder->where('id', $id);
         $query = $this->builder->get();
-        if (empty($query->getRow())) {
-            return true;
-        } else {
-            return false;
-        }
+        return $query->getRow();
+    }
+    public function getUsers()
+    {
+        $query = $this->builder->get();
+        return $query->getResultArray();
+    }
+    public function addUser($user)
+    {
+        $user['uloga'] = 'USER';
+        $this->builder->insert($user);
+        $id = $this->db->insertID();
+        $this->builder->where('id', $id);
+        $query = $this->builder->get();
+        return $query->getRow();
+    }
+    public function modify($user)
+    {
+        $this->builder->where('id', $user['id']);
+        $this->builder->update($user);
+        $query = $this->builder->get();
+        return $query->getRow();
     }
 }

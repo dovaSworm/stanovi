@@ -21,8 +21,7 @@ class Home extends BaseController
     }
     public function index(): string
     {
-
-        $stanovi = $this->stan->getStanovi();
+        $stanovi = $this->stan->getAllStanovi();
         // echo ($stanovi);
         $data = [
             'stanovi' => $stanovi,
@@ -32,13 +31,15 @@ class Home extends BaseController
             . view('templates/home')
             . view('templates/footer');
     }
-
-    // public function projects(): string
-    // {
-
-    //     $data['title'] = 'Projects';
-    //     return view('templates/header', $data)
-    //         . view('templates/projects')
-    //         . view('templates/footer');
-    // }
+    public function projects(): string
+    {
+        $projekti = $this->projekt->getAllProjects();
+        $data = [
+            'projekti' => $projekti,
+            'title' => 'Termometal - Projekti',
+        ];
+        return view('templates/header', $data)
+            . view('templates/projects')
+            . view('templates/footer');
+    }
 }

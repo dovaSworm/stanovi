@@ -66,17 +66,77 @@ class Validation extends BaseConfig
     ];
     public array $signin = [
         'username' => [
-            'rules'  => 'required|max_length[30]|is_not_unique[users.ime]',
+            'rules'  => 'required',
             'errors' => [
                 'required' => 'Morate uneti korisničko ime.',
-                'is_not_unique' => 'Pogrešno korisničko ime.',
             ],
         ],
         'password' => [
-            'rules'  => 'required|min_length[8]|is_not_unique[users.sifra]',
+            'rules'  => 'required',
             'errors' => [
                 'required' => 'Morate uneti šifru.',
-                'is_not_unique' => 'Pogrešna šifra.',
+            ],
+        ],
+    ];
+    public array $modifyeuser = [
+        'ime' => [
+            'rules'  => 'required|max_length[30]|is_not_unique[users.ime]',
+            'errors' => [
+                'required' => 'Morate uneti korisničko ime.',
+                'is_not_unique' => 'Korisničko ime zauzeto.',
+            ],
+        ],
+        'novasifra' => [
+            'rules'  => 'required|is_unique[users.sifra]',
+            'errors' => [
+                'required' => 'Morate uneti šifru.',
+                'is_unique' => 'Nova šifra nije različita od stare.',
+            ],
+        ]
+    ];
+    public array $addproject = [
+        'naziv' => [
+            'rules'  => 'required|is_unique[projekt.naziv]',
+            'errors' => [
+                'required' => 'Morate uneti Naziv.',
+                'is_not_unique' => 'Naziv zauzet.',
+            ],
+        ],
+        'adresa' => [
+            'rules'  => 'required',
+            'errors' => [
+                'required' => 'Morate uneti Adresa.',
+            ],
+        ],
+    ];
+    public array $imagesRule = [
+        'images' => [
+            'rules' => [
+                'uploaded[images]',
+                'is_image[images]',
+                'mime_in[images,image/jpg,image/jpeg,image/gif,image/png,image/webp,image/JPG,image/JPEG,image/GIF,image/PNG,image/WEBP, image/vnd.adobe.photoshop]',
+                // 'max_size[images,10000]',
+                // 'max_dims[images,8120,4804]',
+            ],
+        ],
+    ];
+    public array $addstan = [
+        'kvadratura' => [
+            'rules'  => 'required',
+            'errors' => [
+                'required' => 'Morate uneti kvadraturu stana.',
+            ],
+        ],
+        'tip' => [
+            'rules'  => 'required',
+            'errors' => [
+                'required' => 'Morate uneti tip stana.(garsonjera...)',
+            ],
+        ],
+        'sprat' => [
+            'rules'  => 'required',
+            'errors' => [
+                'required' => 'Morate uneti sprat stana.(prizemlje...)',
             ],
         ],
     ];

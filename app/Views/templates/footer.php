@@ -23,7 +23,7 @@
                     <div class="">
                         <h6 class="section-heading"><i class="fas fa-mobile-alt fa-2x"></i>Telefon za prodaju</h6>
                         <a class="text-left" href="tel:+38163557528">+38163557528</a>,
-                        <a class="text-left" href="tel:+3816498087">+3816498087</a>
+                        <a class="text-left" href="tel:+3816498087">+381649803687</a>
                     </div>
                 </div>
                 <div class="kont-h">
@@ -55,19 +55,20 @@
 </section>
 <footer>
     <div class="container text-center py-2">
-        <a href="http://doveden.com/"><img src="<?php base_url(); ?>slike/dova.png" alt="logo footer" /></a>
+        <a href="<?php echo site_url('http://doveden.com/'); ?>"><img src="<?php echo site_url('slike/dova.png'); ?>"
+                alt="logo footer" /></a>
         <p class="trademark text-center">
             &copy; <span id="displayYear"></span> All Rights Reserved. Designed By
-            <a href="http://doveden.com/">RdDesign</a>
+            <a href="<?php echo site_url('http://doveden.com/'); ?>">RdDesign</a>
         </p>
     </div>
 </footer>
-<script src="<?php base_url(); ?>js/bootstrap.bundle.min.js"></script>
-<script src="<?php base_url(); ?>js/jquery-3.4.1.min.js"></script>
+<script src="<?php echo site_url('/js/bootstrap.bundle.min.js'); ?>"></script>
+<script src="<?php echo site_url('/js/jquery-3.4.1.min.js'); ?>"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
     integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
 </script>
-<script src="<?php base_url(); ?>js/main.js"></script>
+<script src="<?php echo site_url('/js/main.js'); ?>"></script>
 </body>
 
 </html>

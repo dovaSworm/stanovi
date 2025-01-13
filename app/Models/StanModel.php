@@ -15,23 +15,57 @@ class StanModel extends Model
         $this->db = \Config\Database::connect();
         $this->builder = $this->db;
     }
-
     public function getStanovi()
     {
-        // $query = $this->db->query('SELECT stan.* FROM stan');
-        $query = $this->db->query('SELECT a.*, GROUP_CONCAT(c.ime) ime FROM stan a INNER JOIN slike b ON a.id = b.stan_id INNER JOIN slika c ON b.slika_id = c.id GROUP BY a.id;');
-        // $this->builder = $this->db->table('users');
-        // $query = $this->builder->get();
-        // echo $query->getRow()->uloga;
+        $this->builder = $this->db->table('stan');
+        $query = $this->builder->get();
         return $query->getResultArray();
     }
-    public function addUser($name, $pass)
+    public function getAllStanovi()
     {
-        $data = [
-            'ime' => $name,
-            'sifra' => $pass,
-            'uloga' => 'USER',
+        $query = $this->db->query('SELECT a.*, GROUP_CONCAT(b.slika) slika FROM stan a INNER JOIN slike b ON a.id = b.stan_id GROUP BY a.id;');
+        return $query->getResultArray();
+    }
+    public function getById($id)
+    {
+        $query = $this->db->query('SELECT a.*, GROUP_CONCAT(b.slika, b.id) slikeList FROM stan a LEFT JOIN slike b ON a.id = b.stan_id WHERE a.id=' . $id);
+        return $query->getRowArray();
+    }
+    public function addStan($stan, $image)
+    {
+
+        $this->builder = $this->db->table('stan');
+        $this->builder->insert($stan);
+        $id = $this->db->insertID();
+
+        $imgBuilder = $this->db->table('slike');
+        $img = [
+            'slika' => $image,
+            'stan_id' => $id,
+            'proj_id' => null
         ];
-        return $this->builder->insert($data);
+        $imgBuilder->insert($img);
+
+        $this->builder->where('id', $id);
+        $query = $this->builder->get();
+        return $query->getRow();
+    }
+    public function modify($stan, $image)
+    {
+        if (!empty($image)) {
+            $imgBuilder = $this->db->table('slike');
+            $img = [
+                'slika' => $image,
+                'stan_id' => null,
+                'proj_id' => $stan['id']
+            ];
+            $imgBuilder->insert($img);
+        }
+
+        $this->builder = $this->db->table('stan');
+        $this->builder->where('id', $stan['id']);
+        $this->builder->update($stan);
+        $query = $this->builder->get();
+        return $query->getRow();
     }
 }

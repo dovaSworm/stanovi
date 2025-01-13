@@ -1,9 +1,5 @@
 SET sql_notes = 0;
-drop table if EXISTS stan;
-drop table if EXISTS projekt;
-drop table if EXISTS slika;
-drop table if EXISTS slike;
-CREATE DATABASE IF NOT EXISTS stanovi;
+-- USE u407970145_stanovi;
 USE stanovi;
 create table IF NOT EXISTS users (
     id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -82,7 +78,7 @@ CREATE TABLE IF NOT EXISTS slika (
     naslov varchar(255) NOT NULL
 );
 INSERT INTO `slika` (`ime`,`naslov`) VALUES 
-('stan01.jpg', 'stan01'), 
+('stan01'), 
 ('stan02.jpg', 'stan02'),
 ('stan03.jpg', 'stan03'),
 ('stan04.jpg', 'stan04'),
@@ -107,81 +103,80 @@ INSERT INTO `slika` (`ime`,`naslov`) VALUES
 ('stan 23.jpg', 'stan 23')
 ;
 INSERT INTO `slika` (`ime`,`naslov`) VALUES 
-('Vršačka 40 1.jpg', 'Vršačka 40 1'),
-('Vršačka 40 2.jpg', 'Vršačka 40 2'),
-('Vršačka 40 3.jpg', 'Vršačka 40 3'),
-('Bul.JašeTomićabr.31A1.jpg', 'Bul.JašeTomićabr 31A 1'),
-('Bul.JašeTomićabr.31A3.jpg', 'Bul.JašeTomićabr 31A 3'),
-('Bul.JašeTomićabr.31A4.jpg', 'Bul.JašeTomićabr 31A 4'),
-('Hadži Ruvimova br.65 1.jpg', 'Hadži Ruvimova 65 1'),
-('Janka Veselinovića  2-4 1.jpg', 'Janka Veselinovića  2-4 1'),
-('Janka Veselinovića  2-4 2.jpg', 'Janka Veselinovića  2-4 2'),
-('Janka Veselinovića  2-4 3.jpg', 'Janka Veselinovića  2-4 3'),
-('Đorđa Zličića br.6 1.jpg', 'Đorđa Zličića br.6 1'),
-('Đorđa Zličića br.6 2.jpg', 'Đorđa Zličića br.6 2'),
-('Đorđa Zličića br.6 3.jpg', 'Đorđa Zličića br.6 3'),
-('Janka Čmelika 49 1.jpg', 'Janka Čmelika 49 1'),
-('Janka Čmelika 49 2.jpg', 'Janka Čmelika 49 2'),
-('Janka Čmelika br.56-58 3.jpg', 'Janka Čmelika br.56-58 3'),
-('Janka Čmelika br.56-58 2.jpg', 'Janka Čmelika br.56-58 2'),
-('Radoja Domanovića 11 1.jpg', 'Radoja Domanovića 11 1'),
-('Radoja Domanovića 11 2.jpg', 'Radoja Domanovića 11 2'),
-('noimage.png', 'noimage')
+(, 'Vrsacka401'),
+( 'Vrsacka402'),
+( 'Vrsacka403'),
+('Bul.JaseTomica 31A 1'),
+( 'Bul.JaseTomica 31A 3'),
+( 'Bul.JaseTomica 31A 4'),
+('Hadzi Ruvimova 65 1'),
+('Janka Veselinovica  2-4 1'),
+('Janka Veselinovica  2-4 2'),
+('Janka Veselinovica  2-4 3'),
+('djordja Zlicica br.6 1'),
+('djordja Zlicica br.6 2'),
+('djordja Zlicica br.6 3'),
+('Janka cmelika 49 1'),
+('Janka cmelika 49 2'),
+('Janka cmelika br.56-58 3'),
+('Janka cmelika br.56-58 2'),
+('Radoja Domanovica 11 1'),
+('Radoja Domanovica 11 2'),
+('noimage')
 ;
 
 CREATE TABLE IF NOT EXISTS slike (
     id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    slika_id INT,
-    FOREIGN KEY (slika_id) REFERENCES stan(id),
+    slika varchar(255) NOT NULL,
     stan_id INT,
     FOREIGN KEY (stan_id) REFERENCES stan(id),
 	proj_id INT,
-	FOREIGN KEY (proj_id) REFERENCES projekat(id)
+	FOREIGN KEY (proj_id) REFERENCES projekt(id)
 );
-INSERT INTO `slike` (`slika_id`, `stan_id`, `proj_id`) VALUES 
+INSERT INTO `slike` (`slika`, `stan_id`, `proj_id`) VALUES 
 
-(1, '1', NULL),
-(2, '2', NULL),
-(3, '3', NULL),
-(4, '4', NULL),
-(5, '5', NULL),
-(6, '6', NULL),
-(7, '7', NULL),
-(8, '8', NULL),
-(9, '9', NULL),
-(10, '10', NULL),
-(11, '11', NULL),
-(12, '12', NULL),
-(13, '13', NULL),
-(14, '14', NULL),
-(15, '15', NULL),
-(16, '16', NULL),
-(17, '17', NULL),
-(18, '18', NULL),
-(19, '19', NULL),
-(20, '20', NULL),
-(21, '21', NULL),
-(22, '22', NULL),
-(23, '23', NULL),
-(24, NULL, '9'),
-(25, NULL, '9'),
-(26,NULL, '9'),
-(27, NULL, '5'),
-(28,NULL, '5'),
-(29,NULL, '5'),
-(30, NULL, '1'),
-(31, NULL, '3'),
-(32, NULL, '3'),
-(33, NULL, '3'),
-(34, NULL, '7'),
-(35, NULL, '7'),
-(36, NULL, '7'),
-(37, NULL, '6'),
-(38, NULL, '6'),
-(39, NULL, '4'),
-(40, NULL, '4'),
-(41, NULL, '8'),
-(42, NULL, '8'),
-(43, NULL, '2')
+(1,'stan01.jpg',  '1', NULL),
+(2,'stan02.jpg',  '2', NULL),
+(3, 'stan03.jpg', '3', NULL),
+(4,'stan04.jpg',  '4', NULL),
+(5,'stan05.jpg',  '5', NULL),
+(6,'stan 06.jpg',  '6', NULL),
+(7,'stan 07.jpg',  '7', NULL),
+(8, 'stan 08.jpg', '8', NULL),
+(9, 'stan 09.jpg', '9', NULL),
+(10,'stan 10.jpg',  '10', NULL),
+(11,'stan 11.jpg',  '11', NULL),
+(12, 'stan 12.jpg', '12', NULL),
+(13,'stan 13.jpg',  '13', NULL),
+(14,'stan 14.jpg',  '14', NULL),
+(15, 'stan 15.jpg', '15', NULL),
+(16, 'stan 16.jpg', '16', NULL),
+(17,'stan 17.jpg',  '17', NULL),
+(18,'stan 18.jpg',  '18', NULL),
+(19,'stan 19.jpg',  '19', NULL),
+(20, 'stan 20.jpg', '20', NULL),
+(21,'stan 21.jpg',  '21', NULL),
+(22,'stan 22.jpg',  '22', NULL),
+(23,'stan 23.jpg',  '23', NULL),
+(24,'Vrsacka401.jpg', NULL, '9'),
+(25,'Vrsacka402.jpg', NULL, '9'),
+(26,'Vrsacka403.jpg',NULL, '9'),
+(27,'Bul.JaseTomica31A1.jpg', NULL, '5'),
+(28,'Bul.JaseTomica31A3.jpg', NULL, '5'),
+(29,'Bul.JaseTomica31A4.jpg', NULL, '5'),
+(30, 'HadziRuvimova651.jpg', NULL, '1'),
+(31,'JankaVeselinovica2-41.jpg',  NULL, '3'),
+(32, 'JankaVeselinovica2-42.jpg', NULL, '3'),
+(33,'JankaVeselinovica2-43.jpg',  NULL, '3'),
+(34, 'djordjaZlicica61.jpg', NULL, '7'),
+(35, 'djordjaZlicica62.jpg', NULL, '7'),
+(36,'djordjaZlicica63.jpg',  NULL, '7'),
+(37,'Jankacmelika491.jpg',  NULL, '6'),
+(38,'Jankacmelika492.jpg',  NULL, '6'),
+(39,'jankacmelika56-583.jpg',  NULL, '4'),
+(40,'jankacmelika56-582.jpg', NULL, '4'),
+(41,'RadojaDomanovica111.jpg',  NULL, '8'),
+(42, 'RadojaDomanovica112.jpg', NULL, '8'),
+(43,'noimage.png',  NULL, '2')
 ;
 SET sql_notes = 1;
